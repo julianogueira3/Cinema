@@ -6,6 +6,7 @@ import { FilmesModule } from './filmes/filmes.module';
 import { LanchoneteModule } from './lanchonete/lanchonete.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
 
+
 @Module({
   imports: [ FuncionariosModule, FilmesModule, LanchoneteModule, UsuariosModule],
   controllers: [AppController],
