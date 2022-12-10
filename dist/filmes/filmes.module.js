@@ -10,13 +10,12 @@ exports.CommonModule = exports.FilmesModule = void 0;
 const common_1 = require("@nestjs/common");
 const filmes_service_1 = require("./filmes.service");
 const filmes_controller_1 = require("./filmes.controller");
-const prisma_service_1 = require("../prisma/prisma.service");
 let FilmesModule = class FilmesModule {
 };
 FilmesModule = __decorate([
     (0, common_1.Module)({
         controllers: [filmes_controller_1.filmesController],
-        providers: [filmes_service_1.FilmesService, prisma_service_1.PrismaService],
+        providers: [filmes_service_1.FilmesService],
         exports: [filmes_service_1.FilmesService],
     })
 ], FilmesModule);
