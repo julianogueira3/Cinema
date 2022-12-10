@@ -14,7 +14,7 @@ datasource db {
 
 model filmes {
   id        Int   @id @default(autoincrement())
-     nome  String
+  nome  String
  horario  String
   genero String
  classificacao     String
