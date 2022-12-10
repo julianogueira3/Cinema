@@ -16,7 +16,7 @@ let LanchoneteService = class LanchoneteService {
             const { combo, valor, pipoca, refrigerante, doce } = createLanchonete;
             const insumo = {
                 id: (0, uuid_1.v4)(),
-                combo: String,
+                combo,
                 valor,
                 pipoca,
                 refrigerante,

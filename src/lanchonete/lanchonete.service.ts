@@ -12,7 +12,7 @@ export class LanchoneteService {
        const { combo, valor, pipoca,refrigerante,doce} = createLanchonete;
       const insumo = {
         id: uuid(),
-        combo: String,
+        combo,
         valor,
         pipoca,
         refrigerante,

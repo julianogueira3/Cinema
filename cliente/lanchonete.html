@@ -21,13 +21,13 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
     
-        <script src="categoria/categoria.controller"></script>
+        
     
     
         <link rel="stylesheet" href="css/style.css">
 </head>
-<body><
-    <script src="crud.js"></script>
+<body>
+    
     <div class="container">
 
         <h1 class="text-center">Cadastro de insumos</h1>
@@ -37,16 +37,16 @@
         "></div>
         <form  name="userForm">
             <div class="form-group">
-                <input class="form-control" type="text" id="lanchonete" name="combo" placeholder="combo" autocomplete="off">
-                <input class="form-control" type="text" id="lanchonete"name="valor" placeholder="valor" autocomplete="off">
-                <input class="form-control" type="text" id="lanchonete" name="pipoca" placeholder="pipoca" autocomplete="off">
-                <input class="form-control" type="text" id="lanchonete"name="refrigerante" placeholder="refrigerante" autocomplete="off">
-                <input class="form-control" type="text" id="lanchonete"name="doce" placeholder="doce" autocomplete="off">
+                <input class="form-control" type="text" id="combo" name="combo" placeholder="combo" autocomplete="off">
+                <input class="form-control" type="text" id="valor"name="valor" placeholder="valor" autocomplete="off">
+                <input class="form-control" type="text" id="pipoca" name="pipoca" placeholder="pipoca" autocomplete="off">
+                <input class="form-control" type="text" id="refrigerante"name="refrigerante" placeholder="refrigerante" autocomplete="off">
+                <input class="form-control" type="text" id="doce"name="doce" placeholder="doce" autocomplete="off">
                 <div>
-                    <button onclick="fetchApiDataCategoria(event)"  type="submit" id="create" class="btn btn-success" >Create</button>
-                    <button onclick="lerApiDataCategoria(event)"  type="button" id="read" class="btn btn-info"  >Read</button>
-                    <button id="update"  type="button" class="btn btn-warning">Update</button>
-                    <button id="delete" type="button" class="btn btn-danger">Delete</button>
+                    <button onclick="fetchApiLanchonete(event)"  type="submit" id="create" class="btn btn-success" >Create</button>
+                    <button onclick="getLanchonete()"  type="button" id="read" class="btn btn-info"  >Read</button>
+                    <button onclick="updateLanchonete(event)"  type="submit" id="update" class="btn btn-warning">Update</button>
+                    <button onclick="deletarLanchonete(event)" type="submit" id="delete" class="btn btn-danger">Delete</button>
                 </div>
             </div>
         </form>
@@ -54,7 +54,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>#</th>
+                    
                     <th>ID</th>
                     <th>combo</th>
                     <th>valor</th>
@@ -63,12 +63,12 @@
                     <th>doce</th>
                 </tr>
             </thead>
-            <tbody id="data">
+            <tbody id="datal">
             </tbody>
         </table>
 
     </div>
 
-   <script src="crud.js"></script>
+   <script src="lanchonete.js"></script>
 </body>
 </html>

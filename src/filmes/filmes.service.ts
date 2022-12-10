@@ -1,15 +1,11 @@
 import { Injectable, HttpStatus, HttpException, Inject, forwardRef } from '@nestjs/common';
 import { FilmeDto } from './dto/create-filme.dto';
 import { v4 as uuid, v4 } from 'uuid';
-import { PrismaService } from 'src/prisma/prisma.service';
 
 const filmes = [];
 
 @Injectable()
-
 export class FilmesService {
-  constructor(private readonly prisma:PrismaService){}
-  
   capitalizeFirstLetter(str) {
     return str[0].toUpperCase() + str.slice(1);
   }           
