@@ -7,37 +7,38 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { LanchoneteService } from './lanchonete.service';
-import { LanchoneteDto } from './dto/create-lanchonete.dto';
+import { LanchoneteService } from './Lanchonete.service';
+import { ResultadoDto } from 'src/dto/resultado.dto';
+import { Lanchonete } from './entities/Lanchonete.entity';
+import { CadastrarLanchoneteDto } from './dto/cadastra-lanche.dto';
+import { UpdateLanchoneteDto } from './dto/update-Lanchonete.dto';
 
-@Controller('lanchonete')
+@Controller('Lanchonete')
 export class LanchoneteController {
-  lanchoneteService: any;
   constructor(private readonly LanchoneteService: LanchoneteService) {}
 
-  @Post()
-  create(@Body() createLanchoneteDto: LanchoneteDto) {
-    console.log(createLanchoneteDto);
-    return this.lanchoneteService.create(createLanchoneteDto);
+
+
+@Get()
+async listar(): Promise<Lanchonete[]> {
+  return this.LanchoneteService.listar();
+}
+
+ @Post()
+  async cadastrar(@Body() data: CadastrarLanchoneteDto): Promise<ResultadoDto>{
+    return this.LanchoneteService.cadastrar(data)
   }
 
-  @Get()
-  findAll() {
-    return this.lanchoneteService.findAll();
-  }
+ 
+@Delete('id')
+async remove(@Param('id') id: string) {
+  return this.LanchoneteService.remove(id);
+}
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.lanchoneteService.findOne(id);
-  }
+@Patch('id')
+update(@Param('id') id: string, @Body() updateLanchoneteDto: UpdateLanchoneteDto) {
+  return this.LanchoneteService.update(id, updateLanchoneteDto);
+}
+ 
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateLanchoneteDto) {
-    return this.lanchoneteService.update(id, updateLanchoneteDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.lanchoneteService.remove(id);
-  }
 }

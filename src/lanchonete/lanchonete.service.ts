@@ -1,64 +1,54 @@
 import { Injectable, HttpStatus, HttpException, Inject, forwardRef } from '@nestjs/common';
-import { LanchoneteDto } from './dto/create-lanchonete.dto';
 import { v4 as uuid, v4 } from 'uuid';
+import { Repository } from 'typeorm';
+import {   Lanchonete } from './entities/Lanchonete.entity';
+import { ResultadoDto } from 'src/dto/resultado.dto';
+import { CadastrarLanchoneteDto } from './dto/cadastra-lanche.dto';
+import { UpdateLanchoneteDto } from './dto/update-Lanchonete.dto';
 
-const insumos = [];
+//const Lanchonete = [];
 
 @Injectable()
 export class LanchoneteService {
-         
-  create(createLanchonete: LanchoneteDto) {
-    try {
-       const { combo, valor, pipoca,refrigerante,doce} = createLanchonete;
-      const insumo = {
-        id: uuid(),
-        combo,
-        valor,
-        pipoca,
-        refrigerante,
-        doce
-        
-      };
-      const comboExiste = insumos.some(
-        (insumo) => insumo.combo === combo,
-      );
+  constructor(
+    @Inject('Lanchonete_REPOSITORY')
+    private LanchoneteRepository: Repository<Lanchonete>,
+  ) {}
 
-      if (comboExiste) {
-        throw new HttpException(
-          'Este combo ja foi cadastrado',
-          HttpStatus.CONFLICT,
-        );
+  async listar(): Promise<Lanchonete[]> {
+    return this.LanchoneteRepository.find();
+  }
+
+  async cadastrar(data: CadastrarLanchoneteDto): Promise<ResultadoDto>{
+    let lanchonete = new Lanchonete()
+    lanchonete.id = data.id
+    lanchonete.combo = data.combo
+    lanchonete.valor = data.valor
+    lanchonete.pipoca = data.pipoca
+    lanchonete.refrigerante = data.refrigerante
+    lanchonete.doce = data.doce
+    return this.LanchoneteRepository.save(Lanchonete)
+    .then((result)=>{
+      return <ResultadoDto>{
+        status: true,
+        mensagem: "Lanchonete cadastrado"
       }
-
-      insumos.push(insumos);
-      return `combo "${insumo.combo}" criado com sucesso`;
-    } catch (error) {
-      console.log(error);
-      throw new HttpException(error, HttpStatus.BAD_REQUEST);
-      
-    }
+    })
+    .catch((error)=>{
+      return <ResultadoDto>{
+        status: false,
+        mensagem: "Houvr um erro ao cadastrar"
+      }
+    })
+   
   }
 
-  findAll() {
-    return insumos;
+  async remove(id: string) {
+    return this.LanchoneteRepository.delete(id);
   }
 
-  findOne(id: string) {
-    const insumo = insumos.find((element) => element.id === id);
-    return insumo;
-  }
 
-  update(id: string, updateLanchoneteDto) {
-    const insumo = insumos.find((element) => element.id === id);
-
-    const updateLanchonete = Object.assign(insumo, updateLanchoneteDto);
-    return updateLanchonete;
-  }
-
-  remove(id: string) {
-    const insumo = insumos.find((element) => element.id === id);
-    const insumoIndex = insumos.indexOf(insumos);
-    insumos.splice(insumoIndex, 1);
-    return `Combo ${insumo.combo} deletado com sucesso`;
+  update(id: string, updateLanchoneteDto: UpdateLanchoneteDto) {
+    return this.LanchoneteRepository.update(id, updateLanchoneteDto);
   }
 }

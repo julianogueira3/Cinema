@@ -1,65 +1,54 @@
 import { Injectable, HttpStatus, HttpException, Inject, forwardRef } from '@nestjs/common';
-import { FuncionarioDto } from './dto/create-funcionario.dto';
 import { v4 as uuid, v4 } from 'uuid';
+import { Repository } from 'typeorm';
+import { Funcionarios } from './entities/funcionario.entity';
+import { ResultadoDto } from 'src/dto/resultado.dto';
+import { CadastrarFuncionarioDto } from './dto/cadastrar-funcionario.dto';
+import { UpdateFuncionarioDto } from './dto/update-funcionario.dto';
 
-const funcionarios = [];
+//const funcionarios = [];
 
 @Injectable()
 export class FuncionariosService {
-  capitalizeFirstLetter(str) {
-    return str[0].toUpperCase() + str.slice(1);
-  }           
-  create(createFuncionarios: FuncionarioDto) {
-    try {
-       const { nome,local,salario,jornada} = createFuncionarios;
-      const funcionario = {
-        id: uuid(),
-        nome: this.capitalizeFirstLetter(nome),
-        local,
-        salario,
-        jornada,
-        
-      };
-      const funcionarioExiste = funcionarios.some(
-        (funcionario) => funcionario.nome === nome,
-      );
+  constructor(
+    @Inject('FuncionarioS_REPOSITORY')
+    private funcionariosRepository: Repository<Funcionarios>,
+  ) {}
 
-      if (funcionarioExiste) {
-        throw new HttpException(
-          'Este funcionario ja foi cadastrado',
-          HttpStatus.CONFLICT,
-        );
+  async listar(): Promise<Funcionarios[]> {
+    return this.funcionariosRepository.find();
+  }
+
+  async cadastrar(data: CadastrarFuncionarioDto): Promise<ResultadoDto>{
+    let funcionarios = new Funcionarios()
+    funcionarios.id = data.id
+    funcionarios.nome = data.nome
+    funcionarios.local = data.local
+    funcionarios.salario= data.salario
+    funcionarios.jornada = data.jornada
+    
+    return this.funcionariosRepository.save(funcionarios)
+    .then((result)=>{
+      return <ResultadoDto>{
+        status: true,
+        mensagem: "Funcionario cadastrado"
       }
-
-      funcionarios.push(funcionarios);
-      return `funcionario "${funcionario.nome}" criado com sucesso`;
-    } catch (error) {
-      console.log(error);
-      throw new HttpException(error, HttpStatus.BAD_REQUEST);
-      
-    }
+    })
+    .catch((error)=>{
+      return <ResultadoDto>{
+        status: false,
+        mensagem: "Houvr um erro ao cadastrar"
+      }
+    })
+   
   }
 
-  findAll() {
-    return funcionarios;
+  async remove(id: string) {
+    return this.funcionariosRepository.delete(id);
   }
 
-  findOne(id: string) {
-    const funcionario = funcionarios.find((element) => element.id === id);
-    return funcionario;
-  }
 
-  update(id: string, updateFuncionarioDto) {
-    const funcionario = funcionarios.find((element) => element.id === id);
-
-    const updateFuncionario = Object.assign(funcionario, updateFuncionarioDto);
-    return updateFuncionario;
-  }
-
-  remove(id: string) {
-    const filme = funcionarios.find((element) => element.id === id);
-    const filmeIndex = funcionarios.indexOf(funcionarios);
-    funcionarios.splice(filmeIndex, 1);
-    return `Filme ${filme.nome} deletado com sucesso`;
+  update(id: string, updateFuncionariosDto: UpdateFuncionarioDto) {
+    return this.funcionariosRepository.update(id, updateFuncionariosDto);
   }
 }

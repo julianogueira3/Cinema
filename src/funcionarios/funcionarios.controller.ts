@@ -8,36 +8,37 @@ import {
   Delete,
 } from '@nestjs/common';
 import { FuncionariosService } from './funcionarios.service';
-import { FuncionarioDto } from './dto/create-funcionario.dto';
+import { ResultadoDto } from 'src/dto/resultado.dto';
+import { Funcionario } from './entities/funcionario.entity';
+import { CadastrarFuncionarioDto } from './dto/cadastrar-funcionario.dto';
+import { UpdateFuncionarioDto } from './dto/update-funcionario.dto';
 
 @Controller('funcionario')
-export class FuncionariosController {
-  funcionariosService: any;
-  constructor(private readonly filmesService: FuncionariosService) {}
+export class funcionarioController {
+  constructor(private readonly funcionarioService: FuncionariosService) {}
 
-  @Post()
-  create(@Body() createFuncionariosDto: FuncionarioDto) {
-    console.log(createFuncionariosDto);
-    return this.filmesService.create(createFuncionariosDto);
+
+
+@Get()
+async listar(): Promise<Funcionario[]> {
+  return this.funcionarioService.listar();
+}
+
+ @Post()
+  async cadastrar(@Body() data: CadastrarFuncionarioDto): Promise<ResultadoDto>{
+    return this.funcionarioService.cadastrar(data)
   }
 
-  @Get()
-  findAll() {
-    return this.funcionariosService.findAll();
-  }
+ 
+@Delete('id')
+async remove(@Param('id') id: string) {
+  return this.funcionarioService.remove(id);
+}
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.funcionariosService.findOne(id);
-  }
+@Patch('id')
+update(@Param('id') id: string, @Body() updateFuncionarioDto: UpdateFuncionarioDto) {
+  return this.funcionarioService.update(id, updateFuncionarioDto);
+}
+ 
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFuncionarioDto) {
-    return this.funcionariosService.update(id, updateFuncionarioDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.funcionariosService.remove(id);
-  }
 }

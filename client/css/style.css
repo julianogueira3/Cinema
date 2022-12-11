@@ -49,6 +49,9 @@ html, body{
 .navbar-dark .navbar-nav .nav-link.active::after {
 	width: 50%;
 }
+.p-5bg-image{
+    background: no-repeat;
+}
 
 
 /*------------------------------------------------------------------
