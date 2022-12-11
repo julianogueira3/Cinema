@@ -12,3 +12,4 @@ import { DatabaseModule } from 'src/database/database.module';
   exports:[FuncionariosService]
 })
 export class FuncionariosModule {}
+export class CommonModule {}

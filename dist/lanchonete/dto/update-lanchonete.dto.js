@@ -6,4 +6,4 @@ const create_lanchonete_dto_1 = require("./create-lanchonete.dto");
 class UpdateLanchoneteDto extends (0, mapped_types_1.PartialType)(create_lanchonete_dto_1.LanchoneteDto) {
 }
 exports.UpdateLanchoneteDto = UpdateLanchoneteDto;
-//# sourceMappingURL=update-lanchonete.dto.js.map
+//# sourceMappingURL=update-Lanchonete.dto.js.map

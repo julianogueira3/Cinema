@@ -12,25 +12,25 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LanchoneteController = void 0;
+exports.lanchoneteController = void 0;
 const common_1 = require("@nestjs/common");
 const Lanchonete_service_1 = require("./Lanchonete.service");
 const update_Lanchonete_dto_1 = require("./dto/update-Lanchonete.dto");
-let LanchoneteController = class LanchoneteController {
-    constructor(LanchoneteService) {
-        this.LanchoneteService = LanchoneteService;
+let lanchoneteController = class lanchoneteController {
+    constructor(lanchoneteService) {
+        this.lanchoneteService = lanchoneteService;
     }
     async listar() {
-        return this.LanchoneteService.listar();
+        return this.lanchoneteService.listar();
     }
     async cadastrar(data) {
-        return this.LanchoneteService.cadastrar(data);
+        return this.lanchoneteService.cadastrar(data);
     }
     async remove(id) {
-        return this.LanchoneteService.remove(id);
+        return this.lanchoneteService.remove(id);
     }
     update(id, updateLanchoneteDto) {
-        return this.LanchoneteService.update(id, updateLanchoneteDto);
+        return this.lanchoneteService.update(id, updateLanchoneteDto);
     }
 };
 __decorate([
@@ -38,21 +38,21 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], LanchoneteController.prototype, "listar", null);
+], lanchoneteController.prototype, "listar", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], LanchoneteController.prototype, "cadastrar", null);
+], lanchoneteController.prototype, "cadastrar", null);
 __decorate([
     (0, common_1.Delete)('id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], LanchoneteController.prototype, "remove", null);
+], lanchoneteController.prototype, "remove", null);
 __decorate([
     (0, common_1.Patch)('id'),
     __param(0, (0, common_1.Param)('id')),
@@ -60,10 +60,10 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_Lanchonete_dto_1.UpdateLanchoneteDto]),
     __metadata("design:returntype", void 0)
-], LanchoneteController.prototype, "update", null);
-LanchoneteController = __decorate([
-    (0, common_1.Controller)('Lanchonete'),
+], lanchoneteController.prototype, "update", null);
+lanchoneteController = __decorate([
+    (0, common_1.Controller)('lanchonete'),
     __metadata("design:paramtypes", [Lanchonete_service_1.LanchoneteService])
-], LanchoneteController);
-exports.LanchoneteController = LanchoneteController;
+], lanchoneteController);
+exports.lanchoneteController = lanchoneteController;
 //# sourceMappingURL=lanchonete.controller.js.map
