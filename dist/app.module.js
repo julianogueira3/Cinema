@@ -14,11 +14,15 @@ const funcionarios_module_1 = require("./funcionarios/funcionarios.module");
 const filmes_module_1 = require("./filmes/filmes.module");
 const lanchonete_module_1 = require("./lanchonete/lanchonete.module");
 const usuarios_module_1 = require("./usuarios/usuarios.module");
+const path_1 = require("path");
+const serve_static_1 = require("@nestjs/serve-static");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [funcionarios_module_1.FuncionariosModule, filmes_module_1.FilmesModule, lanchonete_module_1.LanchoneteModule, usuarios_module_1.UsuariosModule],
+        imports: [funcionarios_module_1.FuncionariosModule, filmes_module_1.FilmesModule, lanchonete_module_1.LanchoneteModule, usuarios_module_1.UsuariosModule, serve_static_1.ServeStaticModule.forRoot({
+                renderPath: (0, path_1.join)(__dirname, '..', 'client'),
+            }),],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
