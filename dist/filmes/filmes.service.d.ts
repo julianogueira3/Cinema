@@ -1,9 +1,10 @@
-import { FilmeDto } from './dto/create-filme.dto';
+import { Repository } from 'typeorm';
+import { Filmes } from './entities/filme.entity';
+import { ResultadoDto } from 'src/dto/resultado.dto';
+import { CadastrarFilmeDto } from './dto/create-filme.dto';
 export declare class FilmesService {
-    capitalizeFirstLetter(str: any): any;
-    create(createFilmes: FilmeDto): string;
-    findAll(): any[];
-    findOne(id: string): any;
-    update(id: string, updateFilmeDto: any): any;
-    remove(id: string): string;
+    private filmesRepository;
+    constructor(filmesRepository: Repository<Filmes>);
+    listar(): Promise<Filmes[]>;
+    cadastrar(data: CadastrarFilmeDto): Promise<ResultadoDto>;
 }

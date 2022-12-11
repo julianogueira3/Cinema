@@ -16,6 +16,7 @@ async function bootstrap() {
     app.enableCors(options);
     app.useGlobalPipes(new common_1.ValidationPipe());
     await app.listen(process.env.PORT || 8080);
+    console.log(`Cinema App Rodando na porta ${port}`);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map

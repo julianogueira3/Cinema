@@ -1,2 +1,8 @@
-export declare class Filme {
+export declare class Filmes {
+    id: string;
+    nome: string;
+    horario: string;
+    genero: string;
+    classificacao: string;
+    duracao: string;
 }

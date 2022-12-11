@@ -1,4 +1,4 @@
-export declare class FilmeDto {
+export interface CadastrarFilmeDto {
     id: string;
     nome: string;
     horario: string;

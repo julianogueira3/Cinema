@@ -10,12 +10,16 @@ exports.CommonModule = exports.FilmesModule = void 0;
 const common_1 = require("@nestjs/common");
 const filmes_service_1 = require("./filmes.service");
 const filmes_controller_1 = require("./filmes.controller");
+const database_module_1 = require("../database/database.module");
+const database_providers_1 = require("../database/database.providers");
+const filmes_providers_1 = require("./filmes.providers");
 let FilmesModule = class FilmesModule {
 };
 FilmesModule = __decorate([
     (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
         controllers: [filmes_controller_1.filmesController],
-        providers: [filmes_service_1.FilmesService],
+        providers: [filmes_service_1.FilmesService, ...filmes_providers_1.filmesProviders, ...database_providers_1.databaseProviders],
         exports: [filmes_service_1.FilmesService],
     })
 ], FilmesModule);

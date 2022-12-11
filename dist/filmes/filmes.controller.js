@@ -15,63 +15,30 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.filmesController = void 0;
 const common_1 = require("@nestjs/common");
 const filmes_service_1 = require("./filmes.service");
-const create_filme_dto_1 = require("./dto/create-filme.dto");
 let filmesController = class filmesController {
     constructor(filmesService) {
         this.filmesService = filmesService;
     }
-    create(createFilmesDto) {
-        console.log(createFilmesDto);
-        return this.filmesService.create(createFilmesDto);
+    async listar() {
+        return this.filmesService.listar();
     }
-    findAll() {
-        return this.filmesService.findAll();
-    }
-    findOne(id) {
-        return this.filmesService.findOne(id);
-    }
-    update(id, updateFilmeDto) {
-        return this.filmesService.update(id, updateFilmeDto);
-    }
-    remove(id) {
-        return this.filmesService.remove(id);
+    async cadastrar(data) {
+        return this.filmesService.cadastrar(data);
     }
 };
-__decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_filme_dto_1.FilmeDto]),
-    __metadata("design:returntype", void 0)
-], filmesController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], filmesController.prototype, "findAll", null);
+    __metadata("design:returntype", Promise)
+], filmesController.prototype, "listar", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], filmesController.prototype, "findOne", null);
-__decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Object]),
-    __metadata("design:returntype", void 0)
-], filmesController.prototype, "update", null);
-__decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], filmesController.prototype, "remove", null);
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], filmesController.prototype, "cadastrar", null);
 filmesController = __decorate([
     (0, common_1.Controller)('filme'),
     __metadata("design:paramtypes", [filmes_service_1.FilmesService])
