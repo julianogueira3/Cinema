@@ -1,8 +1,13 @@
-import { LanchoneteDto } from './dto/create-lanchonete.dto';
+import { Repository } from 'typeorm';
+import { Lanchonete } from './entities/Lanchonete.entity';
+import { ResultadoDto } from 'src/dto/resultado.dto';
+import { CadastrarLanchoneteDto } from './dto/cadastra-lanche.dto';
+import { UpdateLanchoneteDto } from './dto/update-Lanchonete.dto';
 export declare class LanchoneteService {
-    create(createLanchonete: LanchoneteDto): string;
-    findAll(): any[];
-    findOne(id: string): any;
-    update(id: string, updateLanchoneteDto: any): any;
-    remove(id: string): string;
+    private LanchoneteRepository;
+    constructor(LanchoneteRepository: Repository<Lanchonete>);
+    listar(): Promise<Lanchonete[]>;
+    cadastrar(data: CadastrarLanchoneteDto): Promise<ResultadoDto>;
+    remove(id: string): Promise<import("typeorm").DeleteResult>;
+    update(id: string, updateLanchoneteDto: UpdateLanchoneteDto): Promise<import("typeorm").UpdateResult>;
 }

@@ -5,58 +5,56 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FuncionariosService = void 0;
 const common_1 = require("@nestjs/common");
-const uuid_1 = require("uuid");
-const funcionarios = [];
+const typeorm_1 = require("typeorm");
+const funcionario_entity_1 = require("./entities/funcionario.entity");
 let FuncionariosService = class FuncionariosService {
-    capitalizeFirstLetter(str) {
-        return str[0].toUpperCase() + str.slice(1);
+    constructor(funcionariosRepository) {
+        this.funcionariosRepository = funcionariosRepository;
     }
-    create(createFuncionarios) {
-        try {
-            const { nome, local, salario, jornada } = createFuncionarios;
-            const funcionario = {
-                id: (0, uuid_1.v4)(),
-                nome: this.capitalizeFirstLetter(nome),
-                local,
-                salario,
-                jornada,
+    async listar() {
+        return this.funcionariosRepository.find();
+    }
+    async cadastrar(data) {
+        let funcionarios = new funcionario_entity_1.Funcionarios();
+        funcionarios.id = data.id;
+        funcionarios.nome = data.nome;
+        funcionarios.local = data.local;
+        funcionarios.salario = data.salario;
+        funcionarios.jornada = data.jornada;
+        return this.funcionariosRepository.save(funcionarios)
+            .then((result) => {
+            return {
+                status: true,
+                mensagem: "Funcionario cadastrado"
             };
-            const funcionarioExiste = funcionarios.some((funcionario) => funcionario.nome === nome);
-            if (funcionarioExiste) {
-                throw new common_1.HttpException('Este funcionario ja foi cadastrado', common_1.HttpStatus.CONFLICT);
-            }
-            funcionarios.push(funcionarios);
-            return `funcionario "${funcionario.nome}" criado com sucesso`;
-        }
-        catch (error) {
-            console.log(error);
-            throw new common_1.HttpException(error, common_1.HttpStatus.BAD_REQUEST);
-        }
+        })
+            .catch((error) => {
+            return {
+                status: false,
+                mensagem: "Houvr um erro ao cadastrar"
+            };
+        });
     }
-    findAll() {
-        return funcionarios;
+    async remove(id) {
+        return this.funcionariosRepository.delete(id);
     }
-    findOne(id) {
-        const funcionario = funcionarios.find((element) => element.id === id);
-        return funcionario;
-    }
-    update(id, updateFuncionarioDto) {
-        const funcionario = funcionarios.find((element) => element.id === id);
-        const updateFuncionario = Object.assign(funcionario, updateFuncionarioDto);
-        return updateFuncionario;
-    }
-    remove(id) {
-        const filme = funcionarios.find((element) => element.id === id);
-        const filmeIndex = funcionarios.indexOf(funcionarios);
-        funcionarios.splice(filmeIndex, 1);
-        return `Filme ${filme.nome} deletado com sucesso`;
+    update(id, updateFuncionariosDto) {
+        return this.funcionariosRepository.update(id, updateFuncionariosDto);
     }
 };
 FuncionariosService = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __param(0, (0, common_1.Inject)('FUNCIONARIOS_REPOSITORY')),
+    __metadata("design:paramtypes", [typeorm_1.Repository])
 ], FuncionariosService);
 exports.FuncionariosService = FuncionariosService;
 //# sourceMappingURL=funcionarios.service.js.map

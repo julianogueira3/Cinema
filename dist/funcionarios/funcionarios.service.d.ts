@@ -1,9 +1,13 @@
-import { FuncionarioDto } from './dto/create-funcionario.dto';
+import { Repository } from 'typeorm';
+import { Funcionarios } from './entities/funcionario.entity';
+import { ResultadoDto } from 'src/dto/resultado.dto';
+import { CadastrarFuncionarioDto } from './dto/cadastrar-funcionario.dto';
+import { UpdateFuncionarioDto } from './dto/update-funcionario.dto';
 export declare class FuncionariosService {
-    capitalizeFirstLetter(str: any): any;
-    create(createFuncionarios: FuncionarioDto): string;
-    findAll(): any[];
-    findOne(id: string): any;
-    update(id: string, updateFuncionarioDto: any): any;
-    remove(id: string): string;
+    private funcionariosRepository;
+    constructor(funcionariosRepository: Repository<Funcionarios>);
+    listar(): Promise<Funcionarios[]>;
+    cadastrar(data: CadastrarFuncionarioDto): Promise<ResultadoDto>;
+    remove(id: string): Promise<import("typeorm").DeleteResult>;
+    update(id: string, updateFuncionariosDto: UpdateFuncionarioDto): Promise<import("typeorm").UpdateResult>;
 }

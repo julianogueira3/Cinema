@@ -12,69 +12,58 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FuncionariosController = void 0;
+exports.funcionarioController = void 0;
 const common_1 = require("@nestjs/common");
 const funcionarios_service_1 = require("./funcionarios.service");
-const create_funcionario_dto_1 = require("./dto/create-funcionario.dto");
-let FuncionariosController = class FuncionariosController {
-    constructor(filmesService) {
-        this.filmesService = filmesService;
+const update_funcionario_dto_1 = require("./dto/update-funcionario.dto");
+let funcionarioController = class funcionarioController {
+    constructor(funcionarioService) {
+        this.funcionarioService = funcionarioService;
     }
-    create(createFuncionariosDto) {
-        console.log(createFuncionariosDto);
-        return this.filmesService.create(createFuncionariosDto);
+    async listar() {
+        return this.funcionarioService.listar();
     }
-    findAll() {
-        return this.funcionariosService.findAll();
+    async cadastrar(data) {
+        return this.funcionarioService.cadastrar(data);
     }
-    findOne(id) {
-        return this.funcionariosService.findOne(id);
+    async remove(id) {
+        return this.funcionarioService.remove(id);
     }
     update(id, updateFuncionarioDto) {
-        return this.funcionariosService.update(id, updateFuncionarioDto);
-    }
-    remove(id) {
-        return this.funcionariosService.remove(id);
+        return this.funcionarioService.update(id, updateFuncionarioDto);
     }
 };
-__decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_funcionario_dto_1.FuncionarioDto]),
-    __metadata("design:returntype", void 0)
-], FuncionariosController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], FuncionariosController.prototype, "findAll", null);
+    __metadata("design:returntype", Promise)
+], funcionarioController.prototype, "listar", null);
 __decorate([
-    (0, common_1.Get)(':id'),
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], funcionarioController.prototype, "cadastrar", null);
+__decorate([
+    (0, common_1.Delete)('id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], FuncionariosController.prototype, "findOne", null);
+    __metadata("design:returntype", Promise)
+], funcionarioController.prototype, "remove", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
+    (0, common_1.Patch)('id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:paramtypes", [String, update_funcionario_dto_1.UpdateFuncionarioDto]),
     __metadata("design:returntype", void 0)
-], FuncionariosController.prototype, "update", null);
-__decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], FuncionariosController.prototype, "remove", null);
-FuncionariosController = __decorate([
+], funcionarioController.prototype, "update", null);
+funcionarioController = __decorate([
     (0, common_1.Controller)('funcionario'),
     __metadata("design:paramtypes", [funcionarios_service_1.FuncionariosService])
-], FuncionariosController);
-exports.FuncionariosController = FuncionariosController;
+], funcionarioController);
+exports.funcionarioController = funcionarioController;
 //# sourceMappingURL=funcionarios.controller.js.map

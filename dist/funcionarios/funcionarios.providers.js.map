@@ -1,0 +1,1 @@
+{"version":3,"file":"funcionarios.providers.js","sourceRoot":"","sources":["../../src/funcionarios/funcionarios.providers.ts"],"names":[],"mappings":";;;AACA,sEAA6D;AAEhD,QAAA,qBAAqB,GAAG;IACnC;QACE,OAAO,EAAE,yBAAyB;QAClC,UAAU,EAAE,CAAC,UAAsB,EAAE,EAAE,CAAC,UAAU,CAAC,aAAa,CAAC,iCAAY,CAAC;QAC9E,MAAM,EAAE,CAAC,aAAa,CAAC;KACxB;CACF,CAAC"}

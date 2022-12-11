@@ -11,7 +11,7 @@ import { UpdateFuncionarioDto } from './dto/update-funcionario.dto';
 @Injectable()
 export class FuncionariosService {
   constructor(
-    @Inject('FuncionarioS_REPOSITORY')
+    @Inject('FUNCIONARIOS_REPOSITORY')
     private funcionariosRepository: Repository<Funcionarios>,
   ) {}
 

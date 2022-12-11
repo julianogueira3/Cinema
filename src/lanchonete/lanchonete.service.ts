@@ -1,7 +1,7 @@
 import { Injectable, HttpStatus, HttpException, Inject, forwardRef } from '@nestjs/common';
 import { v4 as uuid, v4 } from 'uuid';
 import { Repository } from 'typeorm';
-import {   Lanchonete } from './entities/Lanchonete.entity';
+import { Lanchonete } from './entities/Lanchonete.entity';
 import { ResultadoDto } from 'src/dto/resultado.dto';
 import { CadastrarLanchoneteDto } from './dto/cadastra-lanche.dto';
 import { UpdateLanchoneteDto } from './dto/update-Lanchonete.dto';
@@ -11,7 +11,7 @@ import { UpdateLanchoneteDto } from './dto/update-Lanchonete.dto';
 @Injectable()
 export class LanchoneteService {
   constructor(
-    @Inject('Lanchonete_REPOSITORY')
+    @Inject('LANCHONETE_REPOSITORY')
     private LanchoneteRepository: Repository<Lanchonete>,
   ) {}
 
@@ -27,7 +27,7 @@ export class LanchoneteService {
     lanchonete.pipoca = data.pipoca
     lanchonete.refrigerante = data.refrigerante
     lanchonete.doce = data.doce
-    return this.LanchoneteRepository.save(Lanchonete)
+    return this.LanchoneteRepository.save(lanchonete)
     .then((result)=>{
       return <ResultadoDto>{
         status: true,

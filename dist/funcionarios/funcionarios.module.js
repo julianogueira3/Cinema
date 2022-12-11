@@ -10,12 +10,17 @@ exports.FuncionariosModule = void 0;
 const common_1 = require("@nestjs/common");
 const funcionarios_service_1 = require("./funcionarios.service");
 const funcionarios_controller_1 = require("./funcionarios.controller");
+const funcionarios_providers_1 = require("./funcionarios.providers");
+const database_providers_1 = require("../database/database.providers");
+const database_module_1 = require("../database/database.module");
 let FuncionariosModule = class FuncionariosModule {
 };
 FuncionariosModule = __decorate([
     (0, common_1.Module)({
-        controllers: [funcionarios_controller_1.FuncionariosController],
-        providers: [funcionarios_service_1.FuncionariosService]
+        imports: [database_module_1.DatabaseModule],
+        controllers: [funcionarios_controller_1.funcionarioController],
+        providers: [funcionarios_service_1.FuncionariosService, ...funcionarios_providers_1.funcionariosProviders, ...database_providers_1.databaseProviders],
+        exports: [funcionarios_service_1.FuncionariosService]
     })
 ], FuncionariosModule);
 exports.FuncionariosModule = FuncionariosModule;

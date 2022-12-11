@@ -10,12 +10,17 @@ exports.LanchoneteModule = void 0;
 const common_1 = require("@nestjs/common");
 const lanchonete_service_1 = require("./lanchonete.service");
 const lanchonete_controller_1 = require("./lanchonete.controller");
+const lanchonete_providers_1 = require("./lanchonete.providers");
+const database_providers_1 = require("../database/database.providers");
+const database_module_1 = require("../database/database.module");
 let LanchoneteModule = class LanchoneteModule {
 };
 LanchoneteModule = __decorate([
     (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
         controllers: [lanchonete_controller_1.LanchoneteController],
-        providers: [lanchonete_service_1.LanchoneteService]
+        providers: [lanchonete_service_1.LanchoneteService, ...lanchonete_providers_1.lanchoneteProviders, ...database_providers_1.databaseProviders],
+        exports: [lanchonete_service_1.LanchoneteService]
     })
 ], LanchoneteModule);
 exports.LanchoneteModule = LanchoneteModule;
