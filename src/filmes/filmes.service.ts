@@ -3,7 +3,8 @@ import { v4 as uuid, v4 } from 'uuid';
 import { Repository } from 'typeorm';
 import { Filmes } from './entities/filme.entity';
 import { ResultadoDto } from 'src/dto/resultado.dto';
-import { CadastrarFilmeDto } from './dto/create-filme.dto';
+import { CadastrarFilmeDto } from './dto/cadastrar-filme.dto';
+import { UpdateFilmesDto } from './dto/update-filme.dto';
 
 //const filmes = [];
 
@@ -17,6 +18,7 @@ export class FilmesService {
   async listar(): Promise<Filmes[]> {
     return this.filmesRepository.find();
   }
+
   async cadastrar(data: CadastrarFilmeDto): Promise<ResultadoDto>{
     let filmes = new Filmes()
     filmes.id = data.id
@@ -40,7 +42,18 @@ export class FilmesService {
     })
    
   }
+
+  async remove(id: string) {
+    return this.filmesRepository.delete(id);
+  }
+
+
+  update(id: string, updateFilmesDto: UpdateFilmesDto) {
+    return this.filmesRepository.update(id, updateFilmesDto);
+  }
 }
+
+
 
 
 

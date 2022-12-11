@@ -45,6 +45,12 @@ let FilmesService = class FilmesService {
             };
         });
     }
+    async remove(id) {
+        return this.filmesRepository.delete(id);
+    }
+    update(id, updateFilmesDto) {
+        return this.filmesRepository.update(id, updateFilmesDto);
+    }
 };
 FilmesService = __decorate([
     (0, common_1.Injectable)(),

@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.filmesController = void 0;
 const common_1 = require("@nestjs/common");
 const filmes_service_1 = require("./filmes.service");
+const update_filme_dto_1 = require("./dto/update-filme.dto");
 let filmesController = class filmesController {
     constructor(filmesService) {
         this.filmesService = filmesService;
@@ -24,6 +25,12 @@ let filmesController = class filmesController {
     }
     async cadastrar(data) {
         return this.filmesService.cadastrar(data);
+    }
+    async remove(id) {
+        return this.filmesService.remove(id);
+    }
+    update(id, updateFilmesDto) {
+        return this.filmesService.update(id, updateFilmesDto);
     }
 };
 __decorate([
@@ -39,6 +46,21 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], filmesController.prototype, "cadastrar", null);
+__decorate([
+    (0, common_1.Delete)('id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], filmesController.prototype, "remove", null);
+__decorate([
+    (0, common_1.Patch)('id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_filme_dto_1.UpdateFilmesDto]),
+    __metadata("design:returntype", void 0)
+], filmesController.prototype, "update", null);
 filmesController = __decorate([
     (0, common_1.Controller)('filme'),
     __metadata("design:paramtypes", [filmes_service_1.FilmesService])

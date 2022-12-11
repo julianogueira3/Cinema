@@ -10,7 +10,8 @@ import {
 import { FilmesService } from './filmes.service';
 import { ResultadoDto } from 'src/dto/resultado.dto';
 import { Filmes } from './entities/filme.entity';
-import { CadastrarFilmeDto } from './dto/create-filme.dto';
+import { CadastrarFilmeDto } from './dto/cadastrar-filme.dto';
+import { UpdateFilmesDto } from './dto/update-filme.dto';
 
 @Controller('filme')
 export class filmesController {
@@ -23,10 +24,21 @@ async listar(): Promise<Filmes[]> {
   return this.filmesService.listar();
 }
 
-  @Post()
+ @Post()
   async cadastrar(@Body() data: CadastrarFilmeDto): Promise<ResultadoDto>{
     return this.filmesService.cadastrar(data)
   }
+
+ 
+@Delete('id')
+async remove(@Param('id') id: string) {
+  return this.filmesService.remove(id);
+}
+
+@Patch('id')
+update(@Param('id') id: string, @Body() updateFilmesDto: UpdateFilmesDto) {
+  return this.filmesService.update(id, updateFilmesDto);
+}
  
 
 }
