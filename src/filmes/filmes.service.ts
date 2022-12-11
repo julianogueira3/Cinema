@@ -1,5 +1,4 @@
 import { Injectable, HttpStatus, HttpException, Inject, forwardRef } from '@nestjs/common';
-import { v4 as uuid, v4 } from 'uuid';
 import { Repository } from 'typeorm';
 import { Filmes } from './entities/filme.entity';
 import { ResultadoDto } from 'src/dto/resultado.dto';

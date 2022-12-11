@@ -9,6 +9,7 @@ import { DatabaseModule } from 'src/database/database.module';
   imports: [DatabaseModule],
   controllers: [lanchoneteController],
   providers: [LanchoneteService ,...lanchoneteProviders,...databaseProviders],
+  exports:[LanchoneteService]
 })
 export class LanchoneteModule {}
 export class CommonModule {}
