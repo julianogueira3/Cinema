@@ -6,7 +6,6 @@ import { ResultadoDto } from 'src/dto/resultado.dto';
 import { CadastrarLanchoneteDto } from './dto/cadastra-lanche.dto';
 import { UpdateLanchoneteDto } from './dto/update-Lanchonete.dto';
 
-//const Lanchonete = [];
 
 @Injectable()
 export class LanchoneteService {

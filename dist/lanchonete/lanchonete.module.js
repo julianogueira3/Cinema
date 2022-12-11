@@ -20,7 +20,6 @@ LanchoneteModule = __decorate([
         imports: [database_module_1.DatabaseModule],
         controllers: [lanchonete_controller_1.LanchoneteController],
         providers: [lanchonete_service_1.LanchoneteService, ...lanchonete_providers_1.lanchoneteProviders, ...database_providers_1.databaseProviders],
-        exports: [lanchonete_service_1.LanchoneteService]
     })
 ], LanchoneteModule);
 exports.LanchoneteModule = LanchoneteModule;
