@@ -13,31 +13,31 @@ import { Lanchonete } from './entities/Lanchonete.entity';
 import { CadastrarLanchoneteDto } from './dto/cadastra-lanche.dto';
 import { UpdateLanchoneteDto } from './dto/update-Lanchonete.dto';
 
-@Controller('Lanchonete')
-export class LanchoneteController {
-  constructor(private readonly LanchoneteService: LanchoneteService) {}
+@Controller('lanchonete')
+export class lanchoneteController {
+  constructor(private readonly lanchoneteService: LanchoneteService) {}
 
 
 
 @Get()
 async listar(): Promise<Lanchonete[]> {
-  return this.LanchoneteService.listar();
+  return this.lanchoneteService.listar();
 }
 
  @Post()
   async cadastrar(@Body() data: CadastrarLanchoneteDto): Promise<ResultadoDto>{
-    return this.LanchoneteService.cadastrar(data)
+    return this.lanchoneteService.cadastrar(data)
   }
 
  
 @Delete('id')
 async remove(@Param('id') id: string) {
-  return this.LanchoneteService.remove(id);
+  return this.lanchoneteService.remove(id);
 }
 
 @Patch('id')
 update(@Param('id') id: string, @Body() updateLanchoneteDto: UpdateLanchoneteDto) {
-  return this.LanchoneteService.update(id, updateLanchoneteDto);
+  return this.lanchoneteService.update(id, updateLanchoneteDto);
 }
  
 
