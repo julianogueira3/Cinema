@@ -36,7 +36,7 @@ async remove(@Param('id') id: string) {
 }
 
 @Patch('id')
-update(@Param('id') id: string, @Body() updateLanchoneteDto: UpdateLanchoneteDto) {
+async update(@Param('id') id: string, @Body() updateLanchoneteDto: UpdateLanchoneteDto) {
   return this.lanchoneteService.update(id, updateLanchoneteDto);
 }
  

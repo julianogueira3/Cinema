@@ -29,7 +29,7 @@ let lanchoneteController = class lanchoneteController {
     async remove(id) {
         return this.lanchoneteService.remove(id);
     }
-    update(id, updateLanchoneteDto) {
+    async update(id, updateLanchoneteDto) {
         return this.lanchoneteService.update(id, updateLanchoneteDto);
     }
 };
@@ -59,7 +59,7 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_Lanchonete_dto_1.UpdateLanchoneteDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], lanchoneteController.prototype, "update", null);
 lanchoneteController = __decorate([
     (0, common_1.Controller)('lanchonete'),

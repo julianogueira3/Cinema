@@ -48,7 +48,7 @@ let LanchoneteService = class LanchoneteService {
     async remove(id) {
         return this.LanchoneteRepository.delete(id);
     }
-    update(id, updateLanchoneteDto) {
+    async update(id, updateLanchoneteDto) {
         return this.LanchoneteRepository.update(id, updateLanchoneteDto);
     }
 };

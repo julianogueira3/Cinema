@@ -46,7 +46,7 @@ export class LanchoneteService {
   }
 
 
-  update(id: string, updateLanchoneteDto: UpdateLanchoneteDto) {
+  async update(id: string, updateLanchoneteDto: UpdateLanchoneteDto) {
     return this.LanchoneteRepository.update(id, updateLanchoneteDto);
   }
 }
