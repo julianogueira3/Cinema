@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { FuncionariosService } from './funcionarios.service';
 import { ResultadoDto } from 'src/dto/resultado.dto';
-import { Funcionario } from './entities/funcionario.entity';
+import { Funcionarios } from './entities/funcionario.entity';
 import { CadastrarFuncionarioDto } from './dto/cadastrar-funcionario.dto';
 import { UpdateFuncionarioDto } from './dto/update-funcionario.dto';
 
@@ -20,7 +20,7 @@ export class funcionarioController {
 
 
 @Get()
-async listar(): Promise<Funcionario[]> {
+async listar(): Promise<Funcionarios[]> {
   return this.funcionarioService.listar();
 }
 
