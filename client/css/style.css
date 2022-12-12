@@ -20,6 +20,9 @@ html, body{
 /*------------------------------------------------------------------
     HEADER
 -------------------------------------------------------------------*/
+div {
+    text-align: center;
+  }
 .navbar-dark .navbar-nav .nav-link{
 	color: #ffffff;
 	letter-spacing: 1px;

@@ -4,7 +4,7 @@ async function fetchApiFuncionario(event) {
     try {
       event.preventDefault();
       const body = {
-        nome: document.querySelector('#filme').value,
+        nome: document.querySelector('#nome').value,
         local: document.querySelector('#local').value,
         salario: document.querySelector('#salario').value,
         jornada: document.querySelector('#jornada').value,
@@ -76,12 +76,10 @@ async function fetchApiFuncionario(event) {
       await fetch(`url+${id}`, {
         method: 'PATCH',
         body: JSON.stringify({
-          id: document.querySelector('#id').value,
-          nome: document.querySelector('#filme').value,
-          horario: document.querySelector('#hora').value,
-          genero: document.querySelector('#genero').value,
-          classificacao: document.querySelector('#classificacao').value,
-          duracao: document.querySelector('#duracao').value,
+          nome: document.querySelector('#nome').value,
+          local: document.querySelector('#local').value,
+          salario: document.querySelector('#salario').value,
+          jornada: document.querySelector('#jornada').value,
           
         }),
         headers: {

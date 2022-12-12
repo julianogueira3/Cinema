@@ -1,6 +1,6 @@
 const url =('http://localhost:8080/lanchonete')
 //POST
-async function fetchApiLanchonte(event) {
+async function fetchApiLanchonete(event) {
     try {
       event.preventDefault();
       const body = {
