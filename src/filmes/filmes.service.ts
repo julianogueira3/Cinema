@@ -5,8 +5,6 @@ import { ResultadoDto } from 'src/dto/resultado.dto';
 import { CadastrarFilmeDto } from './dto/cadastrar-filme.dto';
 import { UpdateFilmesDto } from './dto/update-filme.dto';
 
-//const filmes = [];
-
 @Injectable()
 export class FilmesService {
   constructor(
