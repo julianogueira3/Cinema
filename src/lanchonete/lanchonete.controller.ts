@@ -24,10 +24,10 @@ async listar(): Promise<Lanchonete[]> {
   return this.lanchoneteService.listar();
 }
 
- @Post()
-  async cadastrar(@Body() data: CadastrarLanchoneteDto): Promise<ResultadoDto>{
-    return this.lanchoneteService.cadastrar(data)
-  }
+@Post()
+ async cadastrar(@Body() data: CadastrarLanchoneteDto): Promise<ResultadoDto>{
+  return this.lanchoneteService.cadastrar(data)
+}
 
  
 @Delete(':id')

@@ -17,17 +17,15 @@ import { UpdateFuncionarioDto } from './dto/update-funcionario.dto';
 export class funcionarioController {
   constructor(private readonly funcionarioService: FuncionariosService) {}
 
-
-
 @Get()
 async listar(): Promise<Funcionarios[]> {
   return this.funcionarioService.listar();
 }
 
- @Post()
-  async cadastrar(@Body() data: CadastrarFuncionarioDto): Promise<ResultadoDto>{
-    return this.funcionarioService.cadastrar(data)
-  }
+@Post()
+async cadastrar(@Body() data: CadastrarFuncionarioDto): Promise<ResultadoDto>{
+  return this.funcionarioService.cadastrar(data)
+}
 
  
 @Delete(':id')
@@ -39,6 +37,4 @@ async remove(@Param('id') id: string) {
 async update(@Param('id') id: string, @Body() updateFuncionarioDto: UpdateFuncionarioDto) {
   return this.funcionarioService.update(id, updateFuncionarioDto);
 }
- 
-
 }
