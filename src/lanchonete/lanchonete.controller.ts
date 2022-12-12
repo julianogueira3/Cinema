@@ -30,12 +30,12 @@ async listar(): Promise<Lanchonete[]> {
   }
 
  
-@Delete('id')
+@Delete(':id')
 async remove(@Param('id') id: string) {
   return this.lanchoneteService.remove(id);
 }
 
-@Patch('id')
+@Patch(':id')
 async update(@Param('id') id: string, @Body() updateLanchoneteDto: UpdateLanchoneteDto) {
   return this.lanchoneteService.update(id, updateLanchoneteDto);
 }

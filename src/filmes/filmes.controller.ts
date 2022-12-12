@@ -30,12 +30,12 @@ async listar(): Promise<Filmes[]> {
   }
 
  
-@Delete('id')
+@Delete(':id')
 async remove(@Param('id') id: string) {
   return this.filmesService.remove(id);
 }
 
-@Patch('id')
+@Patch(':id')
 update(@Param('id') id: string, @Body() updateFilmesDto: UpdateFilmesDto) {
   return this.filmesService.update(id, updateFilmesDto);
 }
