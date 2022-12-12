@@ -58,4 +58,4 @@ LanchoneteService = __decorate([
     __metadata("design:paramtypes", [typeorm_1.Repository])
 ], LanchoneteService);
 exports.LanchoneteService = LanchoneteService;
-//# sourceMappingURL=lanchonete.service.js.map
+//# sourceMappingURL=Lanchonete.service.js.map
