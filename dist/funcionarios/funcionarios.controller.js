@@ -29,7 +29,7 @@ let funcionarioController = class funcionarioController {
     async remove(id) {
         return this.funcionarioService.remove(id);
     }
-    update(id, updateFuncionarioDto) {
+    async update(id, updateFuncionarioDto) {
         return this.funcionarioService.update(id, updateFuncionarioDto);
     }
 };
@@ -59,7 +59,7 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_funcionario_dto_1.UpdateFuncionarioDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], funcionarioController.prototype, "update", null);
 funcionarioController = __decorate([
     (0, common_1.Controller)('funcionario'),

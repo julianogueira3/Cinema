@@ -47,7 +47,7 @@ export class FilmesService {
   }
 
 
-  update(id: string, updateFilmesDto: UpdateFilmesDto) {
+  async update(id: string, updateFilmesDto: UpdateFilmesDto) {
     return this.filmesRepository.update(id, updateFilmesDto);
   }
 }

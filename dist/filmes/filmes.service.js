@@ -48,7 +48,7 @@ let FilmesService = class FilmesService {
     async remove(id) {
         return this.filmesRepository.delete(id);
     }
-    update(id, updateFilmesDto) {
+    async update(id, updateFilmesDto) {
         return this.filmesRepository.update(id, updateFilmesDto);
     }
 };

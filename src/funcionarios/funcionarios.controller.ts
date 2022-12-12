@@ -36,7 +36,7 @@ async remove(@Param('id') id: string) {
 }
 
 @Patch('id')
-update(@Param('id') id: string, @Body() updateFuncionarioDto: UpdateFuncionarioDto) {
+async update(@Param('id') id: string, @Body() updateFuncionarioDto: UpdateFuncionarioDto) {
   return this.funcionarioService.update(id, updateFuncionarioDto);
 }
  
